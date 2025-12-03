@@ -58,50 +58,51 @@ public class MultiplicationTableToFile {
     }
 
 
-    public static void printTableToFile(int start, int end, int step, String filename)
-            throws FileNotFoundException {
+    public static void printTableToFile(int start, int end, int step, String filename) throws FileNotFoundException {
+        try (PrintWriter writer = new PrintWriter(filename)) {
 
-        PrintWriter writer = new PrintWriter(filename);
+            int numberMax = Math.max(Math.abs(start), Math.abs(end));
+            int maxNumberSquare = -1 * numberMax * numberMax;
+            int maxCellWidth = getCellWidth(maxNumberSquare) + 2;
 
-
-        int numberMax = Math.max(Math.abs(start), Math.abs(end));
-        int maxNumberSquare = -1 * numberMax * numberMax;
-        int maxCellWidth = getCellWidth(maxNumberSquare) + 2;
-
-        writer.printf("%" + maxCellWidth + "s", "");
-        for (int x = start; x <= end; x += step) {
-            writer.printf("%" + maxCellWidth + "d", x);
-        }
-        if ((start - end) % step != 0) {
-            writer.printf("%" + maxCellWidth + "d", end);
-        }
-        writer.println();
-
-        for (int y = start; y <= end; y += step) {
-
-            writer.printf("%" + maxCellWidth + "d", y);
-
+            writer.printf("%" + maxCellWidth + "s", "");
             for (int x = start; x <= end; x += step) {
-                int product = x * y;
-                writer.printf("%" + maxCellWidth + "d", product);
+                writer.printf("%" + maxCellWidth + "d", x);
             }
             if ((start - end) % step != 0) {
-                int product = end * y;
-                writer.printf("%" + maxCellWidth + "d", product);
+                writer.printf("%" + maxCellWidth + "d", end);
             }
             writer.println();
-        }
 
-        if ((start - end) % step != 0) {
-            writer.printf("%" + maxCellWidth + "d", end);
-            for  (int x = start; x <= end; x += step) {
-                int product = x * end;
+            for (int y = start; y <= end; y += step) {
+                writer.printf("%" + maxCellWidth + "d", y);
+
+                for (int x = start; x <= end; x += step) {
+                    int product = x * y;
+                    writer.printf("%" + maxCellWidth + "d", product);
+                }
+                if ((start - end) % step != 0) {
+                    int product = end * y;
+                    writer.printf("%" + maxCellWidth + "d", product);
+                }
+                writer.println();
+            }
+
+            if ((start - end) % step != 0) {
+                writer.printf("%" + maxCellWidth + "d", end);
+                for  (int x = start; x <= end; x += step) {
+                    int product = x * end;
+                    writer.printf("%" + maxCellWidth + "d", product);
+                }
+                int product = end * end;
                 writer.printf("%" + maxCellWidth + "d", product);
             }
-            int product = end * end;
-            writer.printf("%" + maxCellWidth + "d", product);
-        }
+            writer.close();
 
-        writer.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Error while file writing: " + e.getMessage());
+        }
     }
+
 }

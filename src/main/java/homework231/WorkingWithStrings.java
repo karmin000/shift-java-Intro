@@ -16,17 +16,31 @@ public class WorkingWithStrings {
             return;
         }
 
-        String normalized = normalize(original);
-
-        System.out.print("Введите символ: ");
-        String chr = console.nextLine();
-
-        while (chr.length() != 1 || chr.charAt(0) == ' ') {
-            System.out.print("Введён неверный символ. Введите символ заново: ");
-            chr = console.nextLine();
+        if (!original.matches("[a-zA-Zа-яА-ЯёЁ.,!?:; ]+")) {
+            System.out.println("Ошибка: строка содержит недопустимые символы");
+            return;
         }
 
-        char target = chr.charAt(0);
+        if (original.trim().isEmpty()) {
+            System.out.println("Ошибка: строка не должна состоять только из пробелов");
+            return;
+        }
+
+        if (original.contains("  ")) {
+            System.out.println("В строке содержаться подряд идущие пробелы. Строка преобразуется к нормальному ввиду.");
+        }
+
+        String normalized = deleteExtraSpaces(original);
+
+        System.out.print("Введите символ: ");
+        String SymbolForReplace = console.nextLine();
+
+        while (SymbolForReplace.length() != 1 || SymbolForReplace.equals(' ')) {
+            System.out.print("Введён неверный символ.");
+            return;
+        }
+
+        char target = SymbolForReplace.charAt(0);
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < normalized.length(); i++) {
@@ -34,7 +48,7 @@ public class WorkingWithStrings {
             sb.append(c == target ? ' ' : c);
         }
 
-        String modified = normalize(sb.toString());
+        String modified = deleteExtraSpaces(sb.toString());
 
         if (modified.equals(normalized)) {
             System.out.print("Строка не изменилась: '" + normalized + "'\n");
@@ -44,7 +58,7 @@ public class WorkingWithStrings {
         }
     }
 
-    private static String normalize(String str) {
+    private static String deleteExtraSpaces(String str) {
         while (str.contains("  ")) {
             str = str.replace("  ", " ");
         }
