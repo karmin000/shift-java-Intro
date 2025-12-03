@@ -4,7 +4,7 @@ public class Decepticon extends Transformer{
 
     private String teamName;
     private final static String eyeColor = "Red";
-    private boolean kindness = true;
+    private boolean kindness = false;
 
     Decepticon(String name, String teamName) {
         super(name);
@@ -12,7 +12,9 @@ public class Decepticon extends Transformer{
     }
 
     public void transform() {
-        System.out.println(name + " is transforming to jett");
+        String[] forms = {"ground vehicle", "air vehicle", "weapon", "machine"};
+        int index = (int) (Math.random() * forms.length);
+        System.out.println(name + " is transforming to " + forms[index]);
     }
 
     @Override
@@ -20,7 +22,7 @@ public class Decepticon extends Transformer{
         System.out.println("---Decepticon properties---");
         System.out.println("Name is " + name);
         System.out.println("Team is " + teamName);
-        System.out.println(kindness ? "kind" : "evil");
+        System.out.println(kindness ? "Kind" : "Evil");
         System.out.println("Eye color is " + eyeColor);
     }
 
