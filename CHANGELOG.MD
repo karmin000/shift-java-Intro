@@ -7,3 +7,5 @@
 <21.11.2025> Внесены изменения в файл MultiplicationTableToFile.java
 
 <23.11.2025> Реализованы классы Tansformer.java, Autobot.java, Decepticon.java. Реализован сценарий применения классов в MainApp.java
+
+<25.11.2025> Класс Transformer преобразован к абстрактному, реализован интерфейс Action
