@@ -1,26 +1,37 @@
-package homework24;
+package homework25;
 
-public class Decepticon extends Transformer{
 
+public class Autobot extends Transformer implements Action {
     private String teamName;
-    private final static String eyeColor = "Red";
+    private final static String eyeColor = "Blue";
     private boolean kindness = true;
 
-    Decepticon(String name, String teamName) {
+    public Autobot(String name, String teamName) {
         super(name);
         this.teamName = teamName;
     }
 
+    @Override
     public void transform() {
-        System.out.println(name + " is transforming to jett");
+        System.out.println(name + " is transforming to bus");
+    }
+
+    @Override
+    public void fire() {
+        System.out.println(name + " is firing");
+    }
+
+    @Override
+    public void charge() {
+        System.out.println(name + " is charging");
     }
 
     @Override
     public void showInfo() {
-        System.out.println("---Decepticon properties---");
+        System.out.println("---Autobot properties---");
         System.out.println("Name is " + name);
         System.out.println("Team is " + teamName);
-        System.out.println(kindness ? "kind" : "evil");
+        System.out.println(kindness ? "Kind" : "Evil");
         System.out.println("Eye color is " + eyeColor);
     }
 
@@ -43,5 +54,4 @@ public class Decepticon extends Transformer{
     public void setKindness(boolean kindness) {
         this.kindness = kindness;
     }
-
 }

@@ -1,23 +1,13 @@
-package homework24;
+package homework25;
 
-public class Transformer {
+public abstract class Transformer implements Action {
     protected String name;
 
     Transformer(String name) {
         this.name = name;
     }
 
-    public void run() {
-        System.out.println(name + " is running");
-    }
-
-    public void fire() {
-        System.out.println(name + " is firing");
-    }
-
-    public void charge() {
-        System.out.println(name + " is charging");
-    }
+    public abstract void transform();
 
     public void showInfo() {
         System.out.println("---Transformer properties---");

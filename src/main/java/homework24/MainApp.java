@@ -17,6 +17,5 @@ public class MainApp {
         transformer.fire();
         transformer.charge();
         transformer.showInfo();
-
     }
 }
