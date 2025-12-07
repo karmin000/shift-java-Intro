@@ -1,6 +1,6 @@
 package homework25;
 
-public abstract class Transformer {
+public abstract class Transformer implements Action {
     protected String name;
 
     Transformer(String name) {
